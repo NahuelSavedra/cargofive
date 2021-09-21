@@ -22,7 +22,7 @@ class CreateRatesTable extends Migration
             $table->text('forty');
             $table->text('fortyhc');
             $table->timestamps();
-            //$table->foreignId('contract_id')->constrained('contract');
+            $table->foreignId('contract_id')->references('id')->on('contracts');
 
         });
     }

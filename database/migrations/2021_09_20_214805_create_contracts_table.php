@@ -18,7 +18,6 @@ class CreateContractsTable extends Migration
             $table->text('nombre');
             $table->date('fecha');
             $table->timestamps();
-            //$table->foreignId('rates_id')->constrained('rates');
         });
     }
 
