@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RatesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+//mostrar vista de formulario
+Route::get('/import',[RatesController::class, 'create'])->name('rates.create');
+//Ruta importacion de archivo excel
+Route::post('/import', [RatesController::class, 'store'])->name('rates.store');
