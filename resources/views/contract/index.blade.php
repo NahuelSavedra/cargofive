@@ -1,7 +1,12 @@
+@extends('layout.app')
 
-
-<h1>Contratos</h1>
-<table class="table">
+@section('content')
+<div class="container">
+    @if(session('message'))
+        <div class="alert alert-success m-3 small"> {{ session('message') }}</div>
+    @endif
+<h1 class="text-center m-4">Contratos</h1>
+<table class="table table-primary">
     <thead>
     <tr>
         <th scope="col">Nombre</th>
@@ -31,3 +36,5 @@
     @endforeach
     </tbody>
 </table>
+</div>
+@endsection

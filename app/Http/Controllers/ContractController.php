@@ -12,7 +12,7 @@ use Maatwebsite\Excel\Facades\Excel;
 class ContractController extends Controller
 {
     public function index(){
-        return view('contract.index', ['contracts' => Contract::with('rates')->latest()->get()]);
+        return view('contract.index', ['contracts' => Contract::with('rates')->latest()->paginate(20)]);
     }
 
     public function create(Request $request){
@@ -29,6 +29,6 @@ class ContractController extends Controller
         //Metodo importacion de archivo excel
         Excel::import(new RatesImport(), $request->file('file'));
 
-        return redirect('/')->with('message', 'importacion completa');
+        return redirect('/')->with('message', 'Importacion realizada con exito');
     }
 }
