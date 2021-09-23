@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContractRequest;
 use App\Imports\RatesImport;
 use App\Models\Contract;
 use App\Models\Rates;
@@ -18,15 +19,15 @@ class ContractController extends Controller
         return view('contract.import');
     }
 
-    public function store(Request $request){
+    public function store(ContractRequest $request){
         //Se crea el contract
         Contract::create([
-            'nombre' => $request->input('nombre'),
-            'fecha' => $request->input('fecha'),
+            'nombre' => $request->input('nombre')->isValid(),
+            'fecha' => $request->input('fecha')->isValid(),
         ]);
 
         //Metodo importacion de archivo excel
-        Excel::import(new RatesImport(), $request->file('file'));
+        Excel::import(new RatesImport(), $request->file('file')->isValid());
 
         return redirect('contract.index')->with('message', 'importacion completa');
     }
