@@ -1,6 +1,6 @@
 
 
-    <form action="{{ route('rates.store') }}" method='POST' enctype="multipart/form-data">
+    <form action="{{ route('contract.store') }}" method='POST' enctype="multipart/form-data">
         @csrf
         <input type="text" placeholder="Nombre" name="nombre"/>
         <input type="date" placeholder="fecha" name="fecha"/>

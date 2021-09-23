@@ -5,16 +5,17 @@ namespace App\Imports;
 use App\Models\Contract;
 use App\Models\Rates;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithStartRow;
 
-class RatesImport implements ToModel
+class RatesImport implements ToModel, WithStartRow
 {
-    private $contract;
 
+    private $contract;
     public function __construct()
     {
+        //Asigno a la variable contract el ultimo contrato creado para poder relacionar
         $this->contract = Contract::latest()->first();
     }
-
 
     /**
     * @param array $row
@@ -23,6 +24,7 @@ class RatesImport implements ToModel
     */
     public function model(array $row)
     {
+        //Relaciono las columnas con el archivo a importar
         return new Rates([
             'origin' => $row[0],
             'destination' => $row[1],
@@ -33,5 +35,10 @@ class RatesImport implements ToModel
             'contract_id' => $this->contract->id,
 
         ]);
+    }
+    //Defino fila de comienzo para evitar importar la primer fila
+    public function startRow(): int
+    {
+        return 2;
     }
 }
