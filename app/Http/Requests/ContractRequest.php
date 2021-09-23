@@ -26,7 +26,7 @@ class ContractRequest extends FormRequest
         return [
             'nombre' => 'required|string',
             'fecha' => 'required|date',
-            'file' => 'required|in:xls,xlsx',
+            'file' => 'required|mimes:xls,xlsx',
         ];
     }
     public function messages()
