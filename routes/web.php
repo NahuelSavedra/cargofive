@@ -1,23 +1,12 @@
 <?php
 
-use App\Http\Controllers\RatesController;
+use App\Http\Controllers\ContractController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//listado de contratos y rutas
+Route::get('/', [ContractController::class, 'index'])->name('contract.index');
 //mostrar vista de formulario
-Route::get('/import',[RatesController::class, 'create'])->name('rates.create');
+Route::get('/import',[ContractController::class, 'create'])->name('contract.create');
 //Ruta importacion de archivo excel
-Route::post('/import', [RatesController::class, 'store'])->name('rates.store');
+Route::post('/import', [ContractController::class, 'store'])->name('contract.store');
